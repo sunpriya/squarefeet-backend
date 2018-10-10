@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 //     res.sendFile(path.join(__dirname+'/client/build/index.html'));
 // });
 
-const portNumber = process.env.PORT || 5000;
+const portNumber = process.env.PORT || 3000;
 
 const server = app.listen(portNumber, ()=>{
     let port = server.address().port;
@@ -37,7 +37,7 @@ app.get('/api/getList', (req,res) => {
     con.connect((err) => {
         if (err) throw err;
         console.log("Connected!");
-        con.query("select * from userinfo;", function (err, result) {
+        con.query("select * from userinfo;", (err, result) => {
           if (err) throw err;
           res.send(result);
           console.log(result);
@@ -48,7 +48,19 @@ app.get('/api/getList', (req,res) => {
 
 app.post('/api/login', (req,res) => {
    let email = req.body.email;
-   query = "select email from userinfo where email = '" + email + "';"
+   let password = req.body.password;
+   query = "select * from userinfo where email = '" + email + "';"
+
+   con.query(query, (err,result) => {
+       if(err) throw err;
+       if(result.length == 0){
+           res.send("This email id is not registered!!");
+           return;
+       }
+       if(result[0].password == password){
+           res.send("User is verified.");
+       }
+   })
 
 //    con.connect((err) => {
 //     if (err) throw err;

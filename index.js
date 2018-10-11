@@ -54,11 +54,28 @@ app.get('/api/getList', (req,res) => {
 
 app.post('/api/signup', (req,res) =>{
 
-    con.query("select * from userinfo;", (err, result) => {
+    let email = req.body.email;
+    let query = "select name from userinfo where email = '" + email + "';";
+    con.query(query, (err, result) => {
         if (err) throw err;
-        res.send(result);
+        //res.send(result);
         console.log(result);
+        if(result.length != 0){
+            res.send('User ID already exists.');
+            return;
+        }
     });
+
+    let name = req.body.name;
+    let password = req.body.password;
+
+    let insertQuery = "INSERT into userinfo values (" + name + "," + email + "," + password + ");" 
+
+    con.query(insertQuery,(err, result) =>{
+        if(err) throw err;
+        console.log('New Record added!');
+        res.sendStatus(200);
+    })
 
 });
 

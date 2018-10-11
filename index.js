@@ -48,21 +48,17 @@ app.get('/api/getList', (req,res) => {
         res.send(result);
         console.log(result);
     });
-    
+
 });
 
 
 app.post('/api/signup', (req,res) =>{
-    
-    con.connect((err) => {
+
+    con.query("select * from userinfo;", (err, result) => {
         if (err) throw err;
-        console.log("Connected!");
-        con.query("select * from userinfo;", (err, result) => {
-          if (err) throw err;
-          res.send(result);
-          console.log(result);
-        });
-      });
+        res.send(result);
+        console.log(result);
+    });
 
 });
 

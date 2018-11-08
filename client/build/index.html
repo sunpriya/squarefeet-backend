@@ -4,8 +4,8 @@
 		<meta charset="utf-8">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src = "./js/apicall.js"></script>
-		
-		<title>Solution Responsive Web Template</title>
+		<script src="./js/validation.js"></script>
+		<title>Squarefeet</title>
 <!--
 
 Template 2081 Solution
@@ -76,16 +76,16 @@ http://www.tooplate.com/view/2081-solution
 								</td>
 								<td>
 									<form>
-										<input id = "email" type="text" name="Name" placeholder="Email" style="height: 50px;">
+										<input id = "email" type="text" name="Email" placeholder="Email" style="height: 50px;">
 									</form>
 								</td>
 								<td>
 									<form>
-										<input id = "mobile" type="text" name="Name" placeholder="Mobile" style="height: 50px;">
+										<input id = "mobile" type="text" name="mobile" placeholder="Mobile" style="height: 50px;">
 									</form>
 								</td>
 								<td>
-									<button id="submitButton" type="submit" class="btn btn_style" style ="size: 15px;position: relative;top:-20px;">Submit</button>
+									<button id="submitButton" type="submit" class="btn btn_style" style ="size: 15px;position: relative;top:-20px;" onclick="validateName();validateEmail();validateMobile();">Submit</button>
 								</td>
 							</tr>
 						</table>
